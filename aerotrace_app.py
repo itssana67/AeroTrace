@@ -38,7 +38,7 @@ def run_query(query):
 # HEADER
 # =====================================================
 
-st.title("🌍 AeroTrace")
+st.title(" AeroTrace")
 st.subheader("Air Pollution Source Detection & Risk Analysis")
 
 st.divider()
@@ -178,7 +178,7 @@ if city == "Lucknow":
 
     if not hotspots.empty:
 
-        st.markdown("### 🔥 Top Pollution Hotspots")
+        st.markdown("### Top Pollution Hotspots")
 
         st.dataframe(
             hotspots,
@@ -219,7 +219,7 @@ if city == "Lucknow":
 
     if not spikes.empty:
 
-        st.markdown("### 🚨 Detected Pollution Spikes")
+        st.markdown("### Detected Pollution Spikes")
 
         st.dataframe(
             spikes,
@@ -259,7 +259,7 @@ if city == "Lucknow":
 
     if not sources.empty:
 
-        st.markdown("### 🏭 Nearby Pollution Source Context")
+        st.markdown("###  Nearby Pollution Source Context")
 
         st.dataframe(
             sources,
@@ -411,7 +411,7 @@ if city == "Lucknow":
 
     if not events.empty:
 
-        st.markdown("### 🔍 Highest Pollution Event Signatures")
+        st.markdown("### Highest Pollution Event Signatures")
 
         st.dataframe(
             events,
@@ -467,7 +467,7 @@ if city == "Lucknow":
 
     if not risks.empty:
 
-        st.markdown("### 🚨 Active Risk Signals")
+        st.markdown("###  Active Risk Signals")
 
         st.dataframe(
             risks,
@@ -507,7 +507,7 @@ if city == "Lucknow":
 
     if not ai_data.empty:
 
-        st.markdown("### 🧠 AI-Generated Pollution Analysis")
+        st.markdown("###  AI-Generated Pollution Analysis")
 
         ai_text = str(ai_data.iloc[0]["AI_INSIGHT"])
 
