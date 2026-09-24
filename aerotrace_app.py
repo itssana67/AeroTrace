@@ -487,7 +487,7 @@ else:
     st.info("Smart alerts will be connected for this city.")
 
 # =====================================================
-# AI ANALYST
+# ASK AEROTRACE
 # =====================================================
 
 st.markdown("## 🤖 AeroTrace AI Analyst")
@@ -520,8 +520,15 @@ if city == "Lucknow":
 
         st.markdown("### 🧠 AI-Generated Pollution Analysis")
 
-        st.write(ai_data.iloc[0]["AI_INSIGHT"])
+       ai_text = str(ai_data.iloc[0]["AI_INSIGHT"])
 
+# Convert escaped newlines into real formatting
+ai_text = ai_text.replace("\\n", "\n")
+
+# Remove unwanted outer quotes if present
+ai_text = ai_text.strip().strip('"')
+
+st.markdown(ai_text)
         st.markdown("</div>", unsafe_allow_html=True)
 
         st.caption(
