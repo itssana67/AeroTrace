@@ -486,8 +486,55 @@ if city == "Lucknow":
 else:
     st.info("Smart alerts will be connected for this city.")
 
-
 # =====================================================
+# AI ANALYST
+# =====================================================
+
+st.markdown("## 🤖 AeroTrace AI Analyst")
+
+if city == "Lucknow":
+
+    ai_query = """
+    SELECT
+        AI_INSIGHT
+    FROM AEROTRACE_DB.ANALYTICS.AEROTRACE_AI_LAB
+    ORDER BY DATETIME_LOCAL DESC
+    LIMIT 1
+    """
+
+    ai_data = run_query(ai_query)
+
+    if not ai_data.empty:
+
+        st.markdown(
+            """
+            <div style="
+                padding: 20px;
+                border-radius: 12px;
+                border: 1px solid #ddd;
+                background-color: #f8f9fa;
+            ">
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown("### 🧠 AI-Generated Pollution Analysis")
+
+        st.write(ai_data.iloc[0]["AI_INSIGHT"])
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.caption(
+            "AI analysis is generated from AeroTrace pollution, "
+            "weather and spatial-source context. It provides "
+            "source clues and monitoring insights, not proof of causation."
+        )
+
+    else:
+        st.info("No AI insight available.")
+
+else:
+    st.info("AI analysis is currently connected to the Lucknow dataset.")# =====================================================
 # FOOTER
 # =====================================================
 
