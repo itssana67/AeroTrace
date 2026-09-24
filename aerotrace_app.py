@@ -11,8 +11,6 @@ st.set_page_config(
 # =====================================================
 # SNOWFLAKE CONNECTION
 # =====================================================
-
-@st.cache_resource
 def get_connection():
     s = st.secrets["snowflake"]
 
@@ -23,15 +21,18 @@ def get_connection():
         warehouse=s["warehouse"],
         database=s["database"],
         schema=s["schema"],
-        role=s["role"]
+        role=s["role"],
+        client_session_keep_alive=True
     )
-
-conn = get_connection()
 
 
 def run_query(query):
-    return pd.read_sql(query, conn)
+    conn = get_connection()
 
+    try:
+        return pd.read_sql(query, conn)
+    finally:
+        conn.close()
 
 # =====================================================
 # HEADER
