@@ -496,7 +496,8 @@ if city == "Lucknow":
 
     ai_query = """
     SELECT
-        AI_INSIGHT
+        AI_INSIGHT,
+        DATETIME_LOCAL
     FROM AEROTRACE_DB.ANALYTICS.AEROTRACE_AI_LAB
     ORDER BY DATETIME_LOCAL DESC
     LIMIT 1
@@ -506,30 +507,17 @@ if city == "Lucknow":
 
     if not ai_data.empty:
 
-        st.markdown(
-            """
-            <div style="
-                padding: 20px;
-                border-radius: 12px;
-                border: 1px solid #ddd;
-                background-color: #f8f9fa;
-            ">
-            """,
-            unsafe_allow_html=True
-        )
-
         st.markdown("### 🧠 AI-Generated Pollution Analysis")
 
-       ai_text = str(ai_data.iloc[0]["AI_INSIGHT"])
+        ai_text = str(ai_data.iloc[0]["AI_INSIGHT"])
 
-# Convert escaped newlines into real formatting
-ai_text = ai_text.replace("\\n", "\n")
+        # Convert escaped newlines into real line breaks
+        ai_text = ai_text.replace("\\n", "\n")
 
-# Remove unwanted outer quotes if present
-ai_text = ai_text.strip().strip('"')
+        # Remove unwanted outer quotation marks
+        ai_text = ai_text.strip().strip('"')
 
-st.markdown(ai_text)
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown(ai_text)
 
         st.caption(
             "AI analysis is generated from AeroTrace pollution, "
@@ -541,7 +529,8 @@ st.markdown(ai_text)
         st.info("No AI insight available.")
 
 else:
-    st.info("AI analysis is currently connected to the Lucknow dataset.")# =====================================================
+    st.info("AI analysis is currently connected to the Lucknow dataset.")
+# =====================================================
 # FOOTER
 # =====================================================
 
